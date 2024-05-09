@@ -1,3 +1,6 @@
+/**
+ * @fileoverview GitHub Action to install OpenResty.
+ */
 
 const core = require("@actions/core")
 const exec = require("@actions/exec")
@@ -80,5 +83,5 @@ const main = async () => {
 
 
 main().catch(err => {
-  core.setFailed(`Failed to install OpenResty: ${err}`);
+  core.setFailed(`Failed to install OpenResty: ${err}`)
 })

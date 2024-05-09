@@ -4,7 +4,7 @@
   "description": "Install OpenResty inside of your GitHub Actions runner",
   "main": "main.js",
   "scripts": {
-    "build": "esbuild main.js --bundle --target=es2020,node20 --platform=node --minify --outdir=dist/",
+    "build": "esbuild main.js --bundle --tree-shaking=true --target=es2015,node20 --platform=node --minify --outdir=dist/",
     "test": "eslint --no-config-lookup --debug main.js",
     "format": "eslint --fix --no-config-lookup --debug main.js"
   },
@@ -18,6 +18,12 @@
     "url": "https://github.com/leafo/gh-actions-openresty/issues"
   },
   "homepage": "https://github.com/leafo/gh-actions-openresty#readme",
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "useTabs": false,
+    "printWidth": 120
+  },
   "dependencies": {
     "@actions/cache": "^3.2.4",
     "@actions/core": "^1.10.1",
