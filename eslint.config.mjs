@@ -1,27 +1,19 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
+import globals from "globals"
+import pluginJs from "@eslint/js"
+import eslintConfigPrettier from "eslint-config-prettier"
 
 /** @type {import("eslint-config")} */
 export default [
   {
     files: ["main.js"],
     languageOptions: {
-      sourceType: "commonjs"
-    }
-  },
-  {
-    languageOptions: {
+      sourceType: "commonjs",
       globals: {
-        ...globals.node
-      }
-    }
+        ...globals.node,
+      },
+      ignores: ["./dist/"],
+    },
   },
   pluginJs.configs.recommended,
-  {
-    ignores: [
-      "dist/main.js"
-    ]
-  },
-  eslintConfigPrettier
-];
+  eslintConfigPrettier,
+]

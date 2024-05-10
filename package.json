@@ -2,11 +2,13 @@
   "name": "gh-actions-openresty",
   "version": "1.0.0",
   "description": "Install OpenResty inside of your GitHub Actions runner",
-  "main": "main.js",
+  "main": "dist/main.js",
   "scripts": {
     "build": "esbuild main.js --bundle --tree-shaking=true --target=es2015,node20 --platform=node --minify --outdir=dist/",
-    "test": "eslint --no-config-lookup --debug main.js",
-    "format": "eslint --fix --no-config-lookup --debug main.js"
+    "test": "npm run lint",
+    "lint": "eslint --no-config-lookup --debug main.js",
+    "lint:fix": "eslint --fix --no-config-lookup --debug main.js",
+    "format": "prettier --write \"!**/dist/*.{js,jsx,vue}\" ."
   },
   "repository": {
     "type": "git",

@@ -6,6 +6,7 @@ const config = {
   tabWidth: 2,
   semi: false,
   singleQuote: true,
-};
+  excludeFiles: ["dist/*.js"],
+}
 
-export default config;
+export default config

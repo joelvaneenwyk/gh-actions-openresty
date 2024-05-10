@@ -2,23 +2,25 @@ name: "Install OpenResty"
 description: "Download, build, and install OpenResty directly in your GitHub Action runner (with build cache)"
 
 branding:
-  icon: 'moon'
-  color: 'green'
+  icon: "moon"
+  color: "green"
 
 inputs:
   openrestyVersion:
     description: "The version to install, see https://openresty.org/en/download.html#source-code-releases"
     required: false
     default: "1.19.9.1"
+
   configureFlags:
     description: "Command line flags passed to configure"
     default: "--with-pcre-jit --with-ipv6"
     required: false
+
   buildCache:
     description: "Set to `false` to force rebuild of OpenResty on every run"
     required: false
     default: "true"
 
 runs:
-  using: 'node20'
-  main: 'dist/main.js'
+  using: "node20"
+  main: "dist/main.js"

@@ -1,4 +1,3 @@
-
 # Github Action for OpenResty
 
 ### `leafo/gh-actions-openresty`
@@ -10,9 +9,7 @@ available) and install it system-wide to `/usr/local/openresty`.
 `/usr/local/openresty/bin` is also added to `PATH` so you can execute `resty`,
 `opm`, and `openresty` directly.
 
-
 ## Example
-
 
 ```yml
 name: test
@@ -24,23 +21,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
-    - uses: leafo/gh-actions-openresty@v1
-      with:
-        openrestyVersion: "1.19.9.1"
+      - uses: actions/checkout@master
+      - uses: leafo/gh-actions-openresty@v1
+        with:
+          openrestyVersion: "1.19.9.1"
 
-    - name: run resty
-      run: resty -e 'print("hi from lua")'
+      - name: run resty
+        run: resty -e 'print("hi from lua")'
 
-    - name: run opm
-      run: opm --cwd install leafo/pgmoon
+      - name: run opm
+        run: opm --cwd install leafo/pgmoon
 
-    # This will install luarocks, configured to use luajit that comes with openresty
-    - uses: leafo/gh-actions-luarocks@v4
-      with:
-        withLuaPath: "/usr/local/openresty/luajit/"
+      # This will install luarocks, configured to use luajit that comes with openresty
+      - uses: leafo/gh-actions-luarocks@v4
+        with:
+          withLuaPath: "/usr/local/openresty/luajit/"
 ```
-
 
 ## Inputs
 
