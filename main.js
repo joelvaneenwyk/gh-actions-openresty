@@ -1,3 +1,6 @@
+/**
+ * @fileoverview GitHub Action to install OpenResty.
+ */
 
 const core = require("@actions/core")
 const exec = require("@actions/exec")
@@ -12,11 +15,12 @@ const path = require("path")
 
 const BUILD_PREFIX = ".openresty"
 
-const makeCacheKey = (openrestyVersion, configureFlags) => `openresty:${openrestyVersion}:${process.platform}:${process.arch}:${configureFlags}`
+const makeCacheKey = (openrestyVersion, configureFlags) =>
+  `openresty:${openrestyVersion}:${process.platform}:${process.arch}:${configureFlags}`
 
 const main = async () => {
-  const openrestyVersion = core.getInput('openrestyVersion', { required: true })
-  const configureFlags = core.getInput('configureFlags')
+  const openrestyVersion = core.getInput("openrestyVersion", { required: true })
+  const configureFlags = core.getInput("configureFlags")
 
   const extractPath = path.join(process.cwd(), BUILD_PREFIX, `openresty-${openrestyVersion}`)
 
@@ -25,7 +29,7 @@ const main = async () => {
 
   let restoredCache = null
 
-  if (core.getInput('buildCache') == 'true') {
+  if (core.getInput("buildCache") == "true") {
     restoredCache = await cache.restoreCache(cachePaths, cacheKey)
     if (restoredCache) {
       notice(`Cache restored: ${restoredCache}`)
@@ -46,19 +50,19 @@ const main = async () => {
     }
 
     await exec.exec(`./configure"`, finalConfigureFlags, {
-      cwd: extractPath
+      cwd: extractPath,
     })
 
     await exec.exec(`make`, ["-j"], {
-      cwd: extractPath
+      cwd: extractPath,
     })
   }
 
   await exec.exec(`sudo make install`, undefined, {
-    cwd: extractPath
+    cwd: extractPath,
   })
 
-  if (core.getInput('buildCache') == 'true' && !restoredCache) {
+  if (core.getInput("buildCache") == "true" && !restoredCache) {
     notice(`Storing into cache: ${cacheKey}`)
     try {
       await cache.saveCache(cachePaths, cacheKey)
@@ -69,16 +73,13 @@ const main = async () => {
 
   core.addPath("/usr/local/openresty/bin")
 
-
   await exec.exec(`rm -rf `, [BUILD_PREFIX], {
-    cwd: extractPath
+    cwd: extractPath,
   })
-
 
   // TODO: delete the .openresty folder
 }
 
-
-main().catch(err => {
-  core.setFailed(`Failed to install OpenResty: ${err}`);
+main().catch((err) => {
+  core.setFailed(`Failed to install OpenResty: ${err}`)
 })

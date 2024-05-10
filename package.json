@@ -2,9 +2,13 @@
   "name": "gh-actions-openresty",
   "version": "1.0.0",
   "description": "Install OpenResty inside of your GitHub Actions runner",
-  "main": "main.js",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "esbuild main.js --bundle --tree-shaking=true --target=es2015,node20 --platform=node --minify --outdir=dist/",
+    "test": "npm run lint",
+    "lint": "eslint --no-config-lookup --debug main.js",
+    "lint:fix": "eslint --fix --no-config-lookup --debug main.js",
+    "format": "prettier --write \"!**/dist/*.{js,jsx,vue}\" ."
   },
   "repository": {
     "type": "git",
@@ -16,11 +20,25 @@
     "url": "https://github.com/leafo/gh-actions-openresty/issues"
   },
   "homepage": "https://github.com/leafo/gh-actions-openresty#readme",
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "useTabs": false,
+    "printWidth": 120
+  },
   "dependencies": {
-    "@actions/cache": "^1.0.9",
-    "@actions/core": "^1.6.0",
-    "@actions/exec": "^1.1.0",
-    "@actions/io": "^1.1.1",
-    "@actions/tool-cache": "^1.7.1"
+    "@actions/cache": "^3.2.4",
+    "@actions/core": "^1.10.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/io": "^1.1.3",
+    "@actions/tool-cache": "^2.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.2.0",
+    "esbuild": "0.21.1",
+    "eslint": "^9.2.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.1.0",
+    "prettier": "^3.2.5"
   }
 }
