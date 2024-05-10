@@ -1,8 +1,8 @@
 # Github Action for OpenResty
 
-### `leafo/gh-actions-openresty`
+## `joelvaneenwyk/gh-actions-openresty`
 
-[![Actions Status](https://github.com/leafo/gh-actions-openresty/workflows/test/badge.svg)](https://github.com/leafo/gh-actions-openresty/actions)
+[![Actions Status](https://github.com/joelvaneenwyk/gh-actions-openresty/workflows/test/badge.svg)](https://github.com/leafo/gh-actions-openresty/actions)
 
 This action will build [OpenResty](https://openresty.org/en/) (or restore from build cache if it's
 available) and install it system-wide to `/usr/local/openresty`.
