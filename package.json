@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.2.0",
-    "esbuild": "0.21.1",
+    "esbuild": "0.21.5",
     "eslint": "^9.2.0",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.1.0",
